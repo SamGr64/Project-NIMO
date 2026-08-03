@@ -1,0 +1,15 @@
+# Changelog
+
+Changes to Project NIMO and its codebase are recorded in this version-control file.
+- Patches (_._.X)  : Minor bug fixes and syntax edits
+- Minor (_.X._)    : Incremental features and isolated functionality/ procedural adjustments that are backwards-compatible
+- Major (X._._)    : Significant breaking features or codebase updates that are not backwards-compatible 
+
+## [Unreleased]
+
+- Project configurations and ground-truths
+- src/ files including file adapters, data normalising and handling, matrix and model preperation
+- output control
+- diagnostic tests
+- CLI and Streamlit dashboards
+- requirements.txt
