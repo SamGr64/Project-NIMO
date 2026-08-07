@@ -5,7 +5,6 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 from typing import Any, Mapping
-
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -18,7 +17,7 @@ from utils import (
     normalise_text_aggressive,
 )
 
-GEN_ANALYSIS_VERSION = "2.0.0"
+ANALYSIS_VERSION = "2.0.0"
 
 
 def _analysis_config(policy: Mapping[str, Any]) -> Mapping[str, Any]:
@@ -255,7 +254,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.version:
-        print(f"Generator analysis version\t{GEN_ANALYSIS_VERSION}")
+        print(f"Generator analysis version\t{ANALYSIS_VERSION}")
         return 0
     try:
         analyse_statement_file(

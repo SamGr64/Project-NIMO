@@ -64,6 +64,14 @@ class StatementGenerator:
         ]
         return self.rng.choices(modes, weights=weights, k=1)[0]
 
+    def choose_descript_mode(self) -> Modes:
+        modes: list[Modes] = ["merge", "split"]
+        weights = [
+            self.policy.descript_mode.merge,
+            self.policy.descript_mode.split,
+        ]
+        return self.rng.choices(modes, weights=weights, k=1)[0]
+
     def uniform_dates(self, length: int) -> list[pd.Timestamp]:
         lower, upper = self.policy.date_generation.year_range
         year = self.rng.randint(lower, upper)
@@ -103,24 +111,24 @@ class StatementGenerator:
             selected = self.rng.choice(selected)
         return str(selected)
 
-    def transaction_type_for(self, amount: float) -> str:
-        primary = "deposit_type" if amount > 0 else "withdrawal_types"
-        choices = list(self.policy.transaction_types.get(primary, []))
-        choices.extend(self.policy.transaction_types.get("either", []))
-        return self.choose_nested_value(choices)
-
-    def description_for(self, amount: float) -> str:
-        primary = "deposit" if amount > 0 else "withdrawal"
-        choices = list(self.policy.descriptions.get(primary, []))
-        choices.extend(self.policy.descriptions.get("either", []))
-        return self.choose_nested_value(choices)
-
     def field_is_enabled(self, field: str) -> bool:
         inclusion = self.policy.field_inclusion
         if field in inclusion.required:
             return True
         probability = inclusion.optional_probabilities.get(field)
         return probability is not None and self.probability_passes(probability)
+
+    def build_descript_columns(self, amounts: list[float], mode: Modes) -> dict[str, list[Any]]:
+        fmt = self.policy.descript_modes.description_format
+        primary = ["deposit" if value > 0 else "withdrawal" for value in amounts]
+        descript_choices = list(self.policy.descriptions.get(primary, []))
+        descript_choices.extend(self.policy.descriptions.get("either", []))
+        type_choices = list(self.policy.descriptions.get(primary, []))
+        type_choices.extend(self.policy.descriptions.get("either", []))
+        if mode == "merge":
+            return {"description": [fmt.format(transaction_type=self.choose_nested_value(type_choices), description=self.choose_nested_value(descript_choices))]}
+        return{"transaction_type": self.choose_nested_value(type_choices), "description": self.choose_nested_value(descript_choices)}
+
 
     def build_amount_columns(self, amounts: list[float], amount_mode: Modes, currency_mode: Modes) -> dict[str, list[Any]]:
         currency = self.policy.currency_modes.currency
@@ -156,6 +164,7 @@ class StatementGenerator:
         amounts = self.bimodal_amounts(length)
         amount_mode = self.choose_amount_mode()
         currency_mode = self.choose_curency_mode()
+        descript_mode = self.choose_descript_mode()
 
         columns: dict[str, list[Any]] = {"date": dates, "_numeric_amount": amounts}
 
@@ -169,17 +178,8 @@ class StatementGenerator:
             if self.field_is_enabled(field):
                 columns[field] = [builder()] * length
 
+        columns.update(self.build_descript_columns(amounts, descript_mode))
         columns.update(self.build_amount_columns(amounts, amount_mode, currency_mode))
-
-        if self.field_is_enabled("transaction_id"):
-            columns["transaction_id"] = [
-                cryptic_id(f"{self.seed}:{index}", self.policy.identifiers.transaction_id_length)
-                for index in range(length)
-            ]
-        if self.field_is_enabled("transaction_type"):
-            columns["transaction_type"] = [self.transaction_type_for(amount) for amount in amounts]
-        if self.field_is_enabled("description"):
-            columns["description"] = [self.description_for(amount) for amount in amounts]
 
         frame = pd.DataFrame(columns)
         frame["date"] = pd.to_datetime(frame["date"])

@@ -13,3 +13,11 @@ Changes to Project NIMO and its codebase are recorded in this version-control fi
 - diagnostic tests
 - CLI and Streamlit dashboards
 - requirements.txt
+
+## [0.1.1] 07-08-2026
+
+- Minor bug fixes and description field adjustments to the statement generator.
+
+## [0.1.0] 06-08-2026
+
+- First committed version of simple generator, uses seeded random generation to produce artificial statements for secure feature production and testing.

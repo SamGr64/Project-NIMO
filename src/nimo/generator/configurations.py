@@ -38,15 +38,15 @@ class AmountGenerationConfig(BaseModel):
     forbid_zero: bool = True
 
 
-class ValueModesConfig(BaseModel):
+class ModesConfig(BaseModel):
     merge: float = Field(default=1, ge=0)
     split: float = Field(default=0, ge=0)
     append_format: str = "{amount:.2f} {currency}"
-    description_format: str = "{transaction_id} {transaction_type} {description}"
+    description_format: str = "{transaction_type} {description}"
     currency: str = "GBP"
 
     @model_validator(mode="after")
-    def validate_weights(self) -> "ValueModesConfig":
+    def weights(self) -> "ModesConfig":
         if self.merge + self.split <= 0:
             raise ValueError("At least one amount mode weight must be positive")
         return self
@@ -82,14 +82,13 @@ class SortCodeConfig(BaseModel):
 
 
 class IdentifierConfig(BaseModel):
-    transaction_id_length: int = Field(default=8, ge=1, le=64)
     bank_id_length: int = Field(default=8, ge=1, le=64)
 
 
 class OutputConfig(BaseModel):
     filename_template: str = "sample_{bank_id}_{seed}.csv"
     column_order: list[str] = [
-                "transaction_id", "date", "bank_id", "bank_name", "account_number",
+                "date", "bank_name", "account_number",
                 "sort_code", "account_type", "transaction_type", "description",
                 "amount", "deposits", "withdrawals", "currency", "running_balance",
             ]
@@ -116,8 +115,9 @@ class GeneratorPolicy(BaseModel):
     statement_length: StatementLengthConfig
     date_generation: DateGenerationConfig
     amount_generation: AmountGenerationConfig
-    amount_modes: ValueModesConfig
-    currency_modes: ValueModesConfig
+    amount_modes: ModesConfig
+    currency_modes: ModesConfig
+    descript_modes: ModesConfig
     field_inclusion: FieldInclusionConfig
     account_number: AccountNumberConfig
     sort_code: SortCodeConfig
@@ -139,7 +139,6 @@ class GeneratorPolicy(BaseModel):
         "withdrawals": ["withdrawals"],
         "currency": ["currency"],
         "description": ["description"],
-        "transaction_id": ["transaction_id"],
         "account_type": ["account_type"],
         "transaction_type": ["transaction_type"],
         "running_balance": ["running_balance"],
