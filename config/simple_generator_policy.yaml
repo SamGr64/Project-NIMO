@@ -1,0 +1,133 @@
+schema_version: 2.0.0
+default_seed: 572985622
+default_path: data/sample_statements
+default_banks: [NIMOB, EarlGreyBank, Brie BS, Fetawide]
+statement_length:
+  mean: 40
+  std: 10
+  minimum: 1
+
+date_generation:
+  year_range: [2020, 2025]
+
+amount_generation:
+  positive_centre: 15.0
+  negative_centre: -15.0
+  std: 5.0
+  deposit_probability: 0.5
+  decimal_places: 2
+  forbid_zero: true
+
+amount_modes:
+  merge: 0.80
+  split: 0.20
+  append_format: "{amount:.2f} {currency}"
+currency_modes:
+  merge: 0.90
+  split: 0.10
+  currency: GBP
+description_modes:
+  merge: 0.80
+  split: 0.20
+  description_format: "{transaction_id} {transaction_type} {description}"
+
+field_inclusion:
+  required:
+    - date
+    - bank_name
+    - account_number
+    - sort_code
+    - description
+    - amount
+  optional_probabilities:
+    account_type: 0.60
+    running_balance: 0.30
+
+account_number:
+  digits: 8
+
+sort_code:
+  digits: 6
+  hyphen_probability: 0.80
+
+identifiers:
+  transaction_id_length: 8
+  bank_id_length: 8
+
+account_types:
+  - [Basic Account, Current Account, Current, Personal Current Account, Premium Current Account]
+  - [Savings Account, Savings, Instant Access Savings, Easy Access Savings, Fixed Rate Savings, Fixed Term Deposit, Children's Savings, Notice Account, Regular Savings, Regular Saver, Regular Saver Account]
+  - [Cash ISA, ISA, Stocks and Shares ISA, Lifetime ISA, LISA, Innovative Finance ISA, Help to Buy ISA, Junior ISA, Child Trust Fund, CTF, Child Trust Fund Account]
+  - [Student Account, Graduate Account, Youth Account]
+  - [Business Account, Business Current Account, Business Savings Account]
+  - Joint Account
+
+transaction_types:
+  deposit_type: [BGC, CHQ, CR, DIV, INT, REF, REV]
+  withdrawal_types:
+    - ATM
+    - [BP, BPAY]
+    - DEP
+    - DR
+    - NWD
+    - PAY
+    - POS
+    - PUR
+    - [WDL, WD]
+  either:
+    - ACH
+    - CHK
+    - EFT
+    - [TFR, TRF]
+
+descriptions:
+  deposit:
+    - Incoming payment
+    - Credit received
+    - Deposit to account
+  withdrawal:
+    - Card or account payment
+    - Debit from account
+    - Outgoing payment
+  either:
+    - Account transfer
+    - Bank transaction
+
+aliases:
+  date: [date, transaction_date, transaction_date_time, transaction_timestamp, timestamp]
+  bank_name: [bank_name, bank, bank_account_name, account_name, account_holder]
+  bank_id: [bank_id, institution_id]
+  account_number: [account_number, account_no, account, account_id]
+  sort_code: [sort_code, bank_sort_code, bank_code, branch_code]
+  amount: [amount, transaction_amount, transaction_value, value]
+  deposits: [deposits, credits, money_in]
+  withdrawals: [withdrawals, debits, money_out]
+  currency: [currency, currency_code]
+  description: [description, transaction_description, transaction_details, transaction_narrative, narrative, details]
+  transaction_id: [transaction_id, transaction_reference, reference]
+  account_type: [account_type, product_type]
+  transaction_type: [transaction_type, transaction_code, type]
+  running_balance: [running_balance, balance, account_balance]
+
+analysis:
+  show_plots: true
+  save_plots: false
+
+output:
+  filename_template: "sample_{bank_id}_{seed}.csv"
+  prevent_overwrite: true
+  column_order:
+    - transaction_id
+    - date
+    - bank_id
+    - bank_name
+    - account_number
+    - sort_code
+    - account_type
+    - transaction_type
+    - description
+    - amount
+    - deposits
+    - withdrawals
+    - currency
+    - running_balance
