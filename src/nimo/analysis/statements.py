@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-import argparse
 from pathlib import Path
 from typing import Any, Mapping
 import matplotlib.pyplot as plt
+import seaborn as sns
 import pandas as pd
 
-from utils import (
+from nimo.utils import (
     canonical_amount_series,
     find_field_name,
     flatten_nested_strings,
@@ -16,6 +16,8 @@ from utils import (
     load_yaml_mapping,
     normalise_text_aggressive,
 )
+
+sns.set_theme(style="whitegrid")
 
 
 def _analysis_config(policy: Mapping[str, Any]) -> Mapping[str, Any]:
@@ -84,7 +86,7 @@ def _save_or_show(fig: plt.Figure, output: Path | None, show: bool) -> None:
         output.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(output, bbox_inches="tight")
     if show:
-        fig.show()
+        plt.show(block=True)
     else:
         plt.close(fig)
 
@@ -177,7 +179,7 @@ def analyse_statement_df(
     safe_source = normalise_text_aggressive(Path(source_name).stem) or "statement"
 
     amount_fig, amount_ax = plt.subplots()
-    amount_ax.hist(analysis_frame["amount"], bins=bins)
+    sns.histplot(analysis_frame["amount"], bins=bins, ax=amount_ax)
     amount_ax.set_title("Amount distribution")
     amount_ax.set_xlabel("Amount")
     amount_ax.set_ylabel("Frequency")
@@ -189,7 +191,7 @@ def analyse_statement_df(
 
     grouped_dates = analysis_frame.set_index("date").resample(date_frequency).size()
     date_fig, date_ax = plt.subplots()
-    date_ax.plot(grouped_dates.index, grouped_dates.values)
+    sns.lineplot(x=grouped_dates.index, y=grouped_dates.values, ax=date_ax)
     date_ax.set_title(f"Transaction dates by {date_frequency}")
     date_ax.set_xlabel("Date")
     date_ax.set_ylabel("Transaction count")
@@ -201,7 +203,7 @@ def analyse_statement_df(
     )
 
     balance_fig, balance_ax = plt.subplots()
-    balance_ax.plot(analysis_frame["date"], analysis_frame["balance"])
+    sns.lineplot(x=analysis_frame["date"], y=analysis_frame["balance"], ax=balance_ax)
     balance_ax.set_title("Balance over time")
     balance_ax.set_xlabel("Date")
     balance_ax.set_ylabel("Balance")

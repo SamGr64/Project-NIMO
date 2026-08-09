@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import random
+import sys
 from calendar import monthrange
 from datetime import date
 from pathlib import Path
@@ -11,9 +12,16 @@ from typing import Any
 import pandas as pd
 import yaml
 from pydantic import ValidationError
-from .generator.configurations import GeneratorPolicy, Modes
-from .utils import cryptic_id, dump_csv, load_yaml_mapping, normalise_text_aggressive
-from .analysis.statements import analyse_statement_df
+
+if __package__ in {None, ""}:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from nimo.generator.configurations import GeneratorPolicy, Modes
+    from nimo.utils import cryptic_id, dump_csv, load_yaml_mapping, normalise_text_aggressive
+    from nimo.analysis.statements import analyse_statement_df
+else:
+    from .generator.configurations import GeneratorPolicy, Modes
+    from .utils import cryptic_id, dump_csv, load_yaml_mapping, normalise_text_aggressive
+    from .analysis.statements import analyse_statement_df
 
 GENERATOR_VERSION = "4.1.0"
 
@@ -67,8 +75,8 @@ class StatementGenerator:
     def choose_descript_mode(self) -> Modes:
         modes: list[Modes] = ["merge", "split"]
         weights = [
-            self.policy.descript_mode.merge,
-            self.policy.descript_mode.split,
+            self.policy.descript_modes.merge,
+            self.policy.descript_modes.split,
         ]
         return self.rng.choices(modes, weights=weights, k=1)[0]
 
@@ -120,14 +128,36 @@ class StatementGenerator:
 
     def build_descript_columns(self, amounts: list[float], mode: Modes) -> dict[str, list[Any]]:
         fmt = self.policy.descript_modes.description_format
-        primary = ["deposit" if value > 0 else "withdrawal" for value in amounts]
-        descript_choices = list(self.policy.descriptions.get(primary, []))
-        descript_choices.extend(self.policy.descriptions.get("either", []))
-        type_choices = list(self.policy.descriptions.get(primary, []))
-        type_choices.extend(self.policy.descriptions.get("either", []))
+        descriptions = self.policy.descriptions
+        transaction_types = self.policy.transaction_types
+
+        def choose_for_value(value: float) -> tuple[str, str]:
+            primary = "deposit" if value > 0 else "withdrawal"
+            descript_choices = list(descriptions.get(primary, []))
+            descript_choices.extend(descriptions.get("either", []))
+            type_choices = list(transaction_types.get(primary, []))
+            type_choices.extend(transaction_types.get("either", []))
+            return self.choose_nested_value(type_choices), self.choose_nested_value(descript_choices)
+
         if mode == "merge":
-            return {"description": [fmt.format(transaction_type=self.choose_nested_value(type_choices), description=self.choose_nested_value(descript_choices))]}
-        return{"transaction_type": self.choose_nested_value(type_choices), "description": self.choose_nested_value(descript_choices)}
+            values = [choose_for_value(value) for value in amounts]
+            return {
+                "description": [
+                    fmt.format(transaction_type=transaction_type, description=description)
+                    for transaction_type, description in values
+                ]
+            }
+
+        transaction_type_values: list[str] = []
+        description_values: list[str] = []
+        for value in amounts:
+            transaction_type, description = choose_for_value(value)
+            transaction_type_values.append(transaction_type)
+            description_values.append(description)
+        return {
+            "transaction_type": transaction_type_values,
+            "description": description_values,
+        }
 
 
     def build_amount_columns(self, amounts: list[float], amount_mode: Modes, currency_mode: Modes) -> dict[str, list[Any]]:
@@ -240,7 +270,31 @@ def load_policy(path: Path) -> tuple[GeneratorPolicy, bool]:
         payload = load_yaml_mapping(path)
         return GeneratorPolicy.model_validate(payload), False
     except FileNotFoundError:
-        return GeneratorPolicy.model_validate(None), True
+        return GeneratorPolicy.model_validate({
+            "schema_version": "1.0",
+            "statement_length": {},
+            "date_generation": {},
+            "amount_generation": {},
+            "amount_modes": {},
+            "currency_modes": {},
+            "descript_modes": {},
+            "field_inclusion": {},
+            "account_number": {},
+            "sort_code": {},
+            "identifiers": {},
+            "output": {},
+            "analysis": {},
+            "transaction_types": {
+                "deposit": ["CR"],
+                "withdrawal": ["DR"],
+                "either": ["TR"],
+            },
+            "descriptions": {
+                "deposit": ["Credit transaction"],
+                "withdrawal": ["Debit transaction"],
+                "either": ["Account transaction"],
+            },
+        }), True
     except (ValidationError, TypeError, yaml.YAMLError) as exc:
         raise ValueError(f"Invalid generator policy {path}:\n{exc}") from exc
 
