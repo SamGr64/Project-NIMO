@@ -11,11 +11,11 @@ from typing import Any
 import pandas as pd
 import yaml
 from pydantic import ValidationError
-from generator.configurations import GeneratorPolicy, Modes
-from src.nimo.utils import cryptic_id, dump_csv, load_yaml_mapping, normalise_text_aggressive
-from statement_analysis import analyse_statement_df
+from .generator.configurations import GeneratorPolicy, Modes
+from .utils import cryptic_id, dump_csv, load_yaml_mapping, normalise_text_aggressive
+from .analysis.statements import analyse_statement_df
 
-GENERATOR_VERSION = "4.0.0"
+GENERATOR_VERSION = "4.1.0"
 
 
 class StatementGenerator:

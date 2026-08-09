@@ -11,10 +11,11 @@ date_generation:
   year_range: [2020, 2025]
 
 amount_generation:
-  positive_centre: 15.0
+  positive_centre: 100.0
   negative_centre: -15.0
-  std: 5.0
-  deposit_probability: 0.5
+  positive_std: 0.0
+  positive_std: 5.0
+  deposit_probability: 0.1
   decimal_places: 2
   forbid_zero: true
 
@@ -29,7 +30,7 @@ currency_modes:
 description_modes:
   merge: 0.80
   split: 0.20
-  description_format: "{transaction_id} {transaction_type} {description}"
+  description_format: "{transaction_type} {description}"
 
 field_inclusion:
   required:
@@ -117,9 +118,7 @@ output:
   filename_template: "sample_{bank_id}_{seed}.csv"
   prevent_overwrite: true
   column_order:
-    - transaction_id
     - date
-    - bank_id
     - bank_name
     - account_number
     - sort_code

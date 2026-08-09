@@ -5,13 +5,13 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "NIMO"
 version = "0.1.1"
-description = "transparent, accessible, and agentically optimised advanced wealth management and capital modelling"
+description = "Transparent, accessible, and agentically optimised advanced wealth management and capital modelling"
 readme = "README.md"
-requires-python ">=3.10"
+requires-python = ">=3.10"
 dependencies = [
     "openpyxl>=3.1",
-    "python-docx>=1.1"
-    "PyYAML>=6.0"
+    "python-docx>=1.1",
+    "PyYAML>=6.0",
     "pydantic>=2.8,<3",
 ]
 
