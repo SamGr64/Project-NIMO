@@ -15,11 +15,11 @@ from pydantic import ValidationError
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-    from nimo.generator.configurations import GeneratorPolicy, Modes
+    from nimo.generation.configurations import GeneratorPolicy, Modes
     from nimo.utils import cryptic_id, dump_csv, load_yaml_mapping, normalise_text_aggressive
     from nimo.analysis.statements import analyse_statement_df
 else:
-    from .generator.configurations import GeneratorPolicy, Modes
+    from .generation.configurations import GeneratorPolicy, Modes
     from .utils import cryptic_id, dump_csv, load_yaml_mapping, normalise_text_aggressive
     from .analysis.statements import analyse_statement_df
 
