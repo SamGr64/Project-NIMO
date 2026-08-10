@@ -33,7 +33,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     repo_root = Path(__file__).resolve().parents[2]
-    config_path = args.config or repo_root / "config" / "simple_generator_policy.yaml"
+    config_path = args.config or repo_root / "config" / "generator_policy.yaml"
     if not config_path.is_absolute():
         config_path = (Path.cwd() / config_path).resolve()
 

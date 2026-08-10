@@ -11,7 +11,7 @@ Generated statements can either be monthly, yearly, 5 years, or a custom date ra
 
 Statements are expected to have 3 timesscales of commonality (weekly, monthly, yearly) and 3 types of debit/ credit behaviours:
 
-- **Periodic**: actions that repeat over the defined timescales. These are guaranteed, or highly likely, spends. 
+- **Periodic**: actions that repeat over the defined timescales. These are guaranteed, or highly likely, spends.
 - **Spontaneous**: Unpredictable, irregular, generally large spends that cannot be forecast but are still fundementally probabilistic on larger timescales. Spontaneous spending probabilities are allowed to vary across the week, month or year but are nonetheless not guaranteed on a given day.
 - **Distributional**: Spending patterns that obey a probabilistic (likely normal or bimodal) distributions over the defined timescales.
 
@@ -41,4 +41,3 @@ Account pie chart
 - Investing for dummies, simple stock marekt metrics, sandbox investing
 - Saving goals
 - Individual targets to get bills down
-- Link smart meter??
