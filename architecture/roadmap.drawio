@@ -1,0 +1,52 @@
+<mxfile host="65bd71144e">
+    <diagram id="lsyNnylJV3KimpnEe2tr" name="Page-1">
+        <mxGraphModel dx="1551" dy="1113" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="300" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="36" value="Phase 1&lt;div&gt;Canonical database&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;amp; import pipeline&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="80" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="Phase 2&lt;div&gt;Random statement&amp;nbsp;&lt;/div&gt;&lt;div&gt;generator&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="80" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="Phase 3&lt;div&gt;Descriptive analysis&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;amp; CLI MVP&amp;nbsp;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="80" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="Phase 4&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;Dashboard&amp;nbsp;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;foundations&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(63, 63, 63); background-color: transparent;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="80" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="Phase 5&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;Categorisation &amp;amp;&amp;nbsp;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;cashflow&lt;/font&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="670" y="80" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="Phase 6&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;Behavioural&amp;nbsp;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;inference&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: rgb(63, 63, 63);&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="820" y="80" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+                    <mxGeometry x="960" y="80" width="30" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="150" width="30" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="Phase 7&lt;div&gt;Forecasting &amp;amp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;Scenarios&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="150" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="Phase 8&lt;div&gt;Budgetting &amp;amp; goals&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="150" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="Phase 9&lt;div&gt;Reporting &amp;amp; advice&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="150" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="Phase 10&lt;div&gt;Investing sandbox&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="150" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="Phase 11&lt;div&gt;Prerelease calibration&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="150" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="84" value="Project roadmap" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="40" y="40" width="110" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

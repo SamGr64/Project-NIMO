@@ -1,0 +1,107 @@
+<mxfile host="65bd71144e">
+    <diagram id="mSMxpzlfTgxXN0mu4CDc" name="Page-1">
+        <mxGraphModel dx="1278" dy="916" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="600" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="60" value="&lt;div&gt;&lt;b style=&quot;background-color: transparent;&quot;&gt;Program Process Flow&lt;/b&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="20" width="170" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="90" style="edgeStyle=none;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="61" target="62" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="150" y="140"/>
+                            <mxPoint x="105" y="140"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="91" style="edgeStyle=none;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="61" target="63" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="210" y="140"/>
+                            <mxPoint x="240" y="140"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="61" value="&lt;b&gt;Start&lt;/b&gt;&lt;br&gt;select/create user profile" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="80" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="93" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="62" target="64" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="62" value="Seed + date range&lt;br&gt;optional archetype/&lt;div&gt;questionnaire&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="160" width="130" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="92" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="63" target="67" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="63" value="CSV bank statement" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="190" y="160" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="94" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="64" target="65" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="64" value="Sample hidden profile&lt;br&gt;derive child seeds" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="250" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="95" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="65" target="66" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="99" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" parent="1" source="65" target="74" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="65" value="Simulate financial processes&lt;br&gt;and paired transfers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="190" y="250" width="140" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="97" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="66" target="67" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="66" value="Render varied statement CSVs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="250" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="98" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="67" target="68" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="67" value="Inspect columns and amount shape" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="160" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="100" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="68" target="69" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" value="Normalise rows&lt;br&gt;dates, signed amount, account, balance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="160" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="101" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="69" target="70" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" value="Exact file hash check&lt;br&gt;newest account/date coverage wins&lt;br&gt;identical rows retained" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="250" width="150" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="Canonical active dataset&lt;br&gt;with superseded provenance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="350" width="150" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="103" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="71" target="72" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="Automatic categories&lt;br&gt;+ internal transfer matching" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="460" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="104" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="72" target="73" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="Overview • Accounts • Transactions&lt;br&gt;Categories • Cash-flow Sankey" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="460" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="73" value="CLI and dashboard&lt;br&gt;same services, same results" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="460" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" value="Private synthetic ground truth&lt;br&gt;future Phase 6 benchmark only" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="190" y="350" width="140" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="86" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" parent="1" source="70" target="71" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
