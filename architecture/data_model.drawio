@@ -1,0 +1,149 @@
+<mxfile host="65bd71144e">
+    <diagram id="data_model" name="Project NIMO 1.0 — Logical Data Model">
+        <mxGraphModel dx="1086" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="500" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="&lt;b&gt;Logical Data Model&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="20" width="150" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="user" value="&lt;b&gt;User&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="65" y="170" width="75" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="account" value="Accounts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="65" y="240" width="75" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="source" value="Source files&lt;br&gt;hash + date coverage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="180" y="330" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="txn" value="&lt;b&gt;Transactions&lt;/b&gt;&lt;br&gt;active/superseded + provenance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="180" y="225" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="category" value="Categories + rules" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="330" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="transfer" value="Transfer matches" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="200" width="110" height="37.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="beh_run" value="Behaviour runs&lt;br&gt;patterns + outliers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="280" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="beh_map" value="Behavioural maps&lt;br&gt;archetype summary" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="380" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="profile" value="Forecast profiles" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="550" y="386.25" width="105" height="37.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="scenario" value="Forecast scenarios&lt;br&gt;overrides + events" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="543.75" y="280" width="117.5" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="frun" value="Forecast runs&lt;br&gt;summary + path cache" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="543.75" y="120" width="116.25" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="budget" value="Budgets + lines" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="690" y="383.13" width="100" height="43.75" as="geometry"/>
+                </mxCell>
+                <mxCell id="portfolio" value="Portfolios" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="810" y="180" width="100" height="41.88" as="geometry"/>
+                </mxCell>
+                <mxCell id="irun" value="Investment runs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="810" y="263.75" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="report" value="Report runs&lt;br&gt;evidence + narrative + outputs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="380" width="180" height="46.88" as="geometry"/>
+                </mxCell>
+                <mxCell id="layout" value="Dashboard layouts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="180" y="80" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="hard" value="Migrations + audit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="80" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge1" value="1:n" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="user" target="account" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge2" value="1:n" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="account" target="txn" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge3" value="1:n" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="source" target="txn" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="270" y="300"/>
+                            <mxPoint x="270" y="300"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge4" value="classifies" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="category" target="txn" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="100" y="310"/>
+                            <mxPoint x="240" y="310"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge5" value="paired" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="txn" target="transfer" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge6" value="input" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="txn" target="beh_run" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="330" y="255"/>
+                            <mxPoint x="330" y="305"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge7" value="produces" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="beh_run" target="beh_map" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge8" value="builds" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="beh_map" target="profile" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge9" value="1:n" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="profile" target="scenario" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge10" value="1:n" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="scenario" target="frun" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge11" value="evaluates" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="scenario" target="budget" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge12" value="simulates" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="scenario" target="goal" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="690" y="280"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge13" value="cash path" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="goal" target="portfolio" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge14" value="1:n" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="portfolio" target="irun" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge15" value="evidence" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="frun" target="report" edge="1">
+                    <mxGeometry x="-0.4615" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge16" value="evidence" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="budget" target="report" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge18" value="evidence" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="irun" target="report" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge19" value="1:n" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="user" target="layout" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="240" y="185"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge20" value="ledger" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;fontSize=12;curved=0;" parent="1" source="user" target="hard" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="goal" value="Goals" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="661.25" y="186.25" width="70" height="33.75" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

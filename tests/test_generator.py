@@ -3,8 +3,8 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from nimo.simple_generator import StatementGenerator
-from nimo.generator.configurations import GeneratorPolicy
+from nimo.generator import StatementGenerator
+from nimo.generation.configurations import GeneratorPolicy
 
 
 def test_build_descript_columns_returns_one_entry_per_amount() -> None:
