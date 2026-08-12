@@ -14,6 +14,10 @@ Changes to Project NIMO and its codebase are recorded in this version-control fi
 - CLI and Streamlit dashboards
 - requirements.txt
 
+## [0.1.2] 09-08-2026
+
+- Changed statement generator to have periodic, spontaneous, and distributional behaviours across weekly, monthly and yearly timescales.
+
 ## [0.1.1] 07-08-2026
 
 - Minor bug fixes and description field adjustments to the statement generator.

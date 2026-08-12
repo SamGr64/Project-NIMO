@@ -15,15 +15,17 @@ from pydantic import ValidationError
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from nimo.generator.behaviours import build_behavioural_amount
     from nimo.generator.configurations import GeneratorPolicy, Modes
     from nimo.utils import cryptic_id, dump_csv, load_yaml_mapping, normalise_text_aggressive
     from nimo.analysis.statements import analyse_statement_df
 else:
+    from .generator.behaviours import build_behavioural_amount
     from .generator.configurations import GeneratorPolicy, Modes
     from .utils import cryptic_id, dump_csv, load_yaml_mapping, normalise_text_aggressive
     from .analysis.statements import analyse_statement_df
 
-GENERATOR_VERSION = "4.1.0"
+GENERATOR_VERSION = "5.0.0"
 
 
 class StatementGenerator:
@@ -87,6 +89,9 @@ class StatementGenerator:
         start = date(year, month, 1)
         end = date(year, month, monthrange(year, month)[1])
         return self.rng.choices(list(pd.date_range(start, end)), k=length)
+
+    def amount_for_date(self, date_value: date, base_amount: float) -> float:
+        return build_behavioural_amount(base_amount, date_value, self.rng, self.policy.model_dump(mode="python"))
 
     def bimodal_amounts(self, length: int) -> list[float]:
         cfg = self.policy.amount_generation
@@ -166,11 +171,11 @@ class StatementGenerator:
         if amount_mode == currency_mode == "merge":
             return {"amount": [fmt.format(amount=value, currency=currency) for value in amounts]}
         elif amount_mode == "split" and currency_mode == "merge":
-            return {"deposits": [fmt.format(amount=value if value > 0 else pd.NA, currency=currency) for value in amounts],
-                    "withdrawals": [fmt.format(amount=abs(value) if value < 0 else pd.NA, currency=currency) for value in amounts]}
+            return {"deposits": [fmt.format(amount=value, currency=currency) if value > 0 else "" for value in amounts],
+                    "withdrawals": [fmt.format(amount=abs(value) if value < 0 else "", currency=currency) for value in amounts]}
         elif amount_mode == currency_mode == "split":
-            return{"deposits": [fmt.format(amount=value if value > 0 else pd.NA, currency=currency) for value in amounts],
-                   "withdrawals": [fmt.format(amount=abs(value) if value < 0 else pd.NA, currency=currency) for value in amounts],
+            return{"deposits": [fmt.format(amount=value, currency=currency) if value > 0 else "" for value in amounts],
+                   "withdrawals": [fmt.format(amount=abs(value) if value < 0 else "", currency=currency) for value in amounts],
                    "currency": [currency] * len(amounts)}
         return {"amount": amounts, "currency": [currency] * len(amounts)}
 
@@ -191,7 +196,8 @@ class StatementGenerator:
         length = self.positive_normal_int()
         bank = self.choose_bank(requested_bank)
         dates = self.uniform_dates(length)
-        amounts = self.bimodal_amounts(length)
+        base_amounts = self.bimodal_amounts(length)
+        amounts = [self.amount_for_date(day, amount) for day, amount in zip(dates, base_amounts)]
         amount_mode = self.choose_amount_mode()
         currency_mode = self.choose_curency_mode()
         descript_mode = self.choose_descript_mode()
@@ -315,11 +321,20 @@ def build_parser(policy: GeneratorPolicy) -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     bootstrap = argparse.ArgumentParser(add_help=False)
-    bootstrap.add_argument("-c", "--config", type=Path, default=Path("generator_policy.yaml"))
+    bootstrap.add_argument("-c", "--config", type=Path, default=None)
     bootstrap_args, _ = bootstrap.parse_known_args(argv)
 
+    repo_root = Path(__file__).resolve().parents[2]
+    config_path = bootstrap_args.config
+    if config_path is None:
+        config_path = repo_root / "config" / "simple_generator_policy.yaml"
+        if not config_path.exists():
+            config_path = Path("generator_policy.yaml")
+    elif not config_path.is_absolute():
+        config_path = (Path.cwd() / config_path).resolve()
+
     try:
-        policy, fallback_used = load_policy(bootstrap_args.config)
+        policy, fallback_used = load_policy(config_path)
     except ValueError as exc:
         print(exc)
         return 2

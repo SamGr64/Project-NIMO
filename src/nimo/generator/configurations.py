@@ -36,6 +36,13 @@ class AmountGenerationConfig(BaseModel):
     deposit_probability: float = Field(default=0.5, ge=0, le=1)
     decimal_places: int = 2
     forbid_zero: bool = True
+    inflation_rate: float = Field(default=0.0, ge=0)
+    periodic_strength: float = Field(default=0.7, ge=0, le=1)
+    spontaneous_strength: float = Field(default=0.2, ge=0, le=1)
+    distributional_strength: float = Field(default=0.1, ge=0, le=1)
+    periodic_scale: str = "weekly"
+    spontaneous_scale: str = "monthly"
+    distributional_scale: str = "yearly"
 
 
 class ModesConfig(BaseModel):
@@ -105,6 +112,24 @@ class AnalysisConfig(BaseModel):
     plot_format: str = "png"
 
 
+class BehaviourConfig(BaseModel):
+    enabled: bool = True
+    weekly_probability: float = Field(default=0.0, ge=0, le=1)
+    monthly_probability: float = Field(default=0.0, ge=0, le=1)
+    yearly_probability: float = Field(default=0.0, ge=0, le=1)
+    recurring_amount_multiplier: float = Field(default=1.0, gt=0)
+    burst_probability: float = Field(default=0.0, ge=0, le=1)
+    burst_multiplier: float = Field(default=1.0, gt=0)
+    distribution: str = "normal"
+    spread: float = Field(default=0.35, ge=0)
+
+
+class BehaviourModesConfig(BaseModel):
+    periodic: BehaviourConfig = Field(default_factory=BehaviourConfig)
+    spontaneous: BehaviourConfig = Field(default_factory=BehaviourConfig)
+    distributional: BehaviourConfig = Field(default_factory=BehaviourConfig)
+
+
 class GeneratorPolicy(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -145,6 +170,7 @@ class GeneratorPolicy(BaseModel):
     }
     output: OutputConfig
     analysis: AnalysisConfig
+    behaviour_modes: BehaviourModesConfig = Field(default_factory=BehaviourModesConfig)
 
     @field_validator("default_banks")
     @classmethod
