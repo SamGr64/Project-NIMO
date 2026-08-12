@@ -1,0 +1,15 @@
+schema_version: 1
+application:
+  name: Project NIMO
+  default_currency: GBP
+  default_locale: en-GB
+  default_timezone: Europe/London
+paths:
+  data_root: data
+  prompts_root: prompts
+storage:
+  database_filename: nimo.sqlite3
+privacy:
+  llm_enabled_by_default: false
+  include_raw_descriptions_in_llm_payload: false
+  log_transaction_values: false

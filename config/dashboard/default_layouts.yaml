@@ -1,0 +1,14 @@
+schema_version: 1
+pages:
+  overview:
+    headline_metrics: [total_balance, current_month_spend, net_cash_flow, savings_rate]
+    widgets: [balance_history, monthly_spend, account_composition, recent_transactions]
+  accounts:
+    headline_metrics: [total_balance, active_accounts, monthly_account_movement]
+    widgets: [account_cards, account_balance_history, account_activity]
+  categories:
+    headline_metrics: [categorised_spend, uncategorised_count, largest_category]
+    widgets: [category_bar, category_timeline, category_table]
+  cash_flow:
+    headline_metrics: [income, external_spend, net_cash_flow, internal_transfers]
+    widgets: [cashflow_sankey, flow_table]

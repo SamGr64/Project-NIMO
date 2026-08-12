@@ -1,0 +1,6 @@
+schema_version: 1
+defaults:
+  provider: local
+  inflation_rate: 0.025
+  annual_fee_rate: 0.0025
+status: planned_phase_10

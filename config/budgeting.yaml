@@ -1,0 +1,5 @@
+schema_version: 1
+defaults:
+  lookback_months: 6
+  irregular_expense_reserve_fraction: 0.05
+status: planned_phase_8

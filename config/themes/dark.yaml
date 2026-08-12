@@ -1,0 +1,20 @@
+schema_version: 1
+name: dark
+surface:
+  background: "#111318"
+  primary: "#1A1E25"
+  secondary: "#242A33"
+text:
+  primary: "#F7F8FA"
+  secondary: "#B6BDC8"
+brand:
+  primary: "#837BA4"
+  secondary: "#CB5F66"
+  accent: "#F3D35E"
+border: "#343C49"
+status:
+  positive: "#46B85D"
+  warning: "#F48A4E"
+  negative: "#F5403D"
+charts:
+  categorical: ["#F3D35E", "#F48A4E", "#CB5F66", "#A59BC7", "#7189D7", "#46B85D"]

@@ -1,0 +1,38 @@
+schema_version: 1
+questions:
+  - id: income_pattern
+    text: How predictable is your income?
+    answers:
+      predictable:
+        trait_ranges: {income_stability: [0.75, 1.00]}
+      mixed:
+        trait_ranges: {income_stability: [0.40, 0.78]}
+      variable:
+        trait_ranges: {income_stability: [0.10, 0.48]}
+  - id: saving_style
+    text: Which best describes your saving habit?
+    answers:
+      save_first:
+        trait_ranges: {savings_propensity: [0.42, 0.78]}
+      balanced:
+        trait_ranges: {savings_propensity: [0.18, 0.48]}
+      spend_first:
+        trait_ranges: {savings_propensity: [0.00, 0.25]}
+  - id: social_spend
+    text: How often do evenings out shape your spending?
+    answers:
+      low:
+        trait_ranges: {discretionary_intensity: [0.08, 0.35], weekend_bias: [0.15, 0.50]}
+      medium:
+        trait_ranges: {discretionary_intensity: [0.30, 0.65], weekend_bias: [0.40, 0.75]}
+      high:
+        trait_ranges: {discretionary_intensity: [0.58, 0.95], weekend_bias: [0.70, 1.00]}
+  - id: unexpected_costs
+    text: How often do large unplanned costs arise?
+    answers:
+      rarely:
+        trait_ranges: {shock_exposure: [0.00, 0.18]}
+      sometimes:
+        trait_ranges: {shock_exposure: [0.15, 0.45]}
+      often:
+        trait_ranges: {shock_exposure: [0.42, 0.78]}

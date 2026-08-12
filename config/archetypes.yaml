@@ -1,0 +1,42 @@
+schema_version: 1
+archetypes:
+  balanced:
+    label: Balanced household
+    description: Stable income with moderate saving and discretionary spending.
+    traits:
+      income_stability: [0.65, 0.95]
+      savings_propensity: [0.18, 0.42]
+      discretionary_intensity: [0.30, 0.58]
+      spending_volatility: [0.25, 0.55]
+      weekend_bias: [0.35, 0.68]
+      shock_exposure: [0.10, 0.35]
+  stable_saver:
+    label: Stable saver
+    description: Predictable income, stronger cash reserves and lower discretionary intensity.
+    traits:
+      income_stability: [0.82, 1.00]
+      savings_propensity: [0.38, 0.72]
+      discretionary_intensity: [0.12, 0.40]
+      spending_volatility: [0.10, 0.38]
+      weekend_bias: [0.20, 0.55]
+      shock_exposure: [0.05, 0.25]
+  social_spender:
+    label: Social discretionary spender
+    description: Stable income with pronounced weekend and hospitality spending.
+    traits:
+      income_stability: [0.62, 0.96]
+      savings_propensity: [0.05, 0.30]
+      discretionary_intensity: [0.58, 0.92]
+      spending_volatility: [0.38, 0.75]
+      weekend_bias: [0.70, 1.00]
+      shock_exposure: [0.10, 0.42]
+  variable_income:
+    label: Variable-income planner
+    description: Irregular credits and greater month-to-month cash-flow uncertainty.
+    traits:
+      income_stability: [0.10, 0.48]
+      savings_propensity: [0.05, 0.38]
+      discretionary_intensity: [0.25, 0.68]
+      spending_volatility: [0.52, 0.95]
+      weekend_bias: [0.25, 0.75]
+      shock_exposure: [0.18, 0.55]

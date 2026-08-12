@@ -1,0 +1,32 @@
+schema_version: 1
+generation:
+  default_currency: GBP
+  default_date_span_months: 24
+  annual_inflation_mean: 0.030
+  annual_inflation_spread: 0.012
+  default_statement_format: seeded_random
+population_priors:
+  monthly_income:
+    minimum: 1400
+    maximum: 6500
+  account_count:
+    minimum: 1
+    maximum: 3
+  income_stability:
+    lower: 0.10
+    upper: 1.00
+  savings_propensity:
+    lower: 0.00
+    upper: 0.80
+  discretionary_intensity:
+    lower: 0.05
+    upper: 0.95
+  spending_volatility:
+    lower: 0.05
+    upper: 0.95
+  weekend_bias:
+    lower: 0.05
+    upper: 0.95
+  shock_exposure:
+    lower: 0.00
+    upper: 0.70

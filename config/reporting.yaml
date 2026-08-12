@@ -1,0 +1,6 @@
+schema_version: 1
+default_sections: [financial_position, cash_flow, spending, categories]
+llm:
+  enabled_by_default: false
+  send_raw_descriptions: false
+status: planned_phase_9

@@ -1,0 +1,6 @@
+schema_version: 1
+monte_carlo:
+  default_runs: 5000
+  default_horizon_months: 12
+intervals: [0.50, 0.90]
+status: planned_phase_7

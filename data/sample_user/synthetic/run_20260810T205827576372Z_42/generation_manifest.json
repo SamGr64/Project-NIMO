@@ -1,0 +1,40 @@
+{
+  "accounts": [
+    {
+      "account_number": "46110026",
+      "account_type": "current",
+      "bank_name": "NIMOB",
+      "currency": "GBP",
+      "key": "current",
+      "name": "Main Current Account",
+      "opening_balance": 2739.06,
+      "sort_code": "93-86-07"
+    },
+    {
+      "account_number": "28988841",
+      "account_type": "savings",
+      "bank_name": "NIMOB",
+      "currency": "GBP",
+      "key": "savings",
+      "name": "Easy Access Savings",
+      "opening_balance": 1717.98,
+      "sort_code": "22-39-31"
+    }
+  ],
+  "archetype": "variable_income",
+  "created_at": "2026-08-10T20:58:28.136795+00:00",
+  "end_date": "2026-07-31",
+  "generator_version": "2.0.0",
+  "ground_truth_path": "synthetic/run_20260810T205827576372Z_42/ground_truth.json",
+  "imported_rows": 1606,
+  "schema_version": 1,
+  "seed": 42,
+  "start_date": "2024-01-01",
+  "statement_format": "seeded_random",
+  "statement_paths": [
+    "synthetic/run_20260810T205827576372Z_42/statements/main_current_account_2024-01-01_2026-07-31_canonical.csv",
+    "synthetic/run_20260810T205827576372Z_42/statements/easy_access_savings_2024-01-31_2026-07-31_canonical.csv"
+  ],
+  "user": "sample_user",
+  "warnings": []
+}

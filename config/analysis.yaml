@@ -1,0 +1,12 @@
+schema_version: 1
+periods:
+  default_months: 12
+  incomplete_month_policy: compare_same_day
+transfers:
+  maximum_date_gap_days: 2
+  minimum_confidence: 0.75
+  description_tokens: [transfer, savings, internal, own account, move money]
+categorisation:
+  minimum_builtin_confidence: 0.75
+metrics:
+  recent_weight_decay: 0.85

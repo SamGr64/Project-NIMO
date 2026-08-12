@@ -1,0 +1,57 @@
+schema_version: 1
+categories:
+  income:
+    label: Income
+    direction: credit
+    keywords: [salary, payroll, wages, bonus, freelance, invoice payment, interest]
+    children:
+      salary: {label: Salary, keywords: [salary, payroll, wages]}
+      other_income: {label: Other income, keywords: [bonus, freelance, invoice payment, interest]}
+  housing:
+    label: Housing
+    direction: debit
+    keywords: [rent, mortgage, landlord, letting]
+  bills:
+    label: Bills and utilities
+    direction: debit
+    keywords: [energy, electric, electricity, gas, water, broadband, internet, mobile, council tax]
+  groceries:
+    label: Groceries
+    direction: debit
+    keywords: [tesco, sainsbury, waitrose, aldi, lidl, morrisons, grocery, supermarket]
+  dining:
+    label: Restaurants and takeaway
+    direction: debit
+    keywords: [restaurant, cafe, coffee, deliveroo, justeat, takeaway, pub, bar, bistro]
+  transport:
+    label: Transport
+    direction: debit
+    keywords: [tfl, bus, train, rail, uber, taxi, petrol, fuel, parking]
+  shopping:
+    label: Shopping
+    direction: debit
+    keywords: [amazon, shop, store, clothing, electronics, department]
+  subscriptions:
+    label: Subscriptions
+    direction: debit
+    keywords: [netflix, spotify, subscription, membership, cloud storage, gym]
+  health:
+    label: Health
+    direction: debit
+    keywords: [pharmacy, dentist, doctor, optician, health]
+  travel:
+    label: Travel and holidays
+    direction: debit
+    keywords: [hotel, airline, airways, holiday, booking.com, airbnb]
+  savings:
+    label: Savings
+    direction: either
+    keywords: [savings transfer, transfer to savings, transfer from current]
+  transfer:
+    label: Internal transfer
+    direction: either
+    keywords: [internal transfer, own account transfer]
+  other:
+    label: Other
+    direction: either
+    keywords: []

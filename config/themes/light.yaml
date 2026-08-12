@@ -1,0 +1,20 @@
+schema_version: 1
+name: light
+surface:
+  background: "#FFFFFF"
+  primary: "#F7F8FA"
+  secondary: "#EEF0F4"
+text:
+  primary: "#171717"
+  secondary: "#666666"
+brand:
+  primary: "#31A247"
+  secondary: "#7285BF"
+  accent: "#CB5F66"
+border: "#D9DEE7"
+status:
+  positive: "#31A247"
+  warning: "#F48A4E"
+  negative: "#F5403D"
+charts:
+  categorical: ["#F3D35E", "#F48A4E", "#CB5F66", "#837BA4", "#4D6AC3", "#31A247"]

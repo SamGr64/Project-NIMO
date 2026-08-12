@@ -1,0 +1,51 @@
+schema_version: 1
+aliases:
+  date: [date, transaction_date, booking_date, transaction_date_time, timestamp]
+  description: [description, transaction_description, transaction_narrative, details, narrative, merchant, reference]
+  amount: [amount, transaction_amount, transaction_value, value]
+  credits: [credits, credit, deposits, money_in, paid_in]
+  debits: [debits, debit, withdrawals, money_out, paid_out]
+  balance: [balance, running_balance, account_balance]
+  currency: [currency, currency_code]
+  bank_name: [bank, bank_name, institution]
+  account_number: [account_number, account_no, account, account_id]
+  sort_code: [sort_code, branch_code, bank_code]
+  account_name: [account_name, product_name]
+formats:
+  canonical:
+    date_format: "%Y-%m-%d"
+    amount_mode: signed
+    include_balance: true
+    columns:
+      date: date
+      description: description
+      amount: amount
+      balance: running_balance
+      currency: currency
+      bank_name: bank_name
+      account_number: account_number
+      sort_code: sort_code
+      account_name: account_name
+  compact_bank:
+    date_format: "%d/%m/%Y"
+    amount_mode: split
+    include_balance: true
+    columns:
+      date: Transaction Date
+      description: Details
+      credits: Money In
+      debits: Money Out
+      balance: Balance
+      account_number: Account No
+      sort_code: Sort Code
+  narrative_bank:
+    date_format: "%d %b %Y"
+    amount_mode: signed
+    include_balance: false
+    columns:
+      date: Booking Date
+      description: Transaction Narrative
+      amount: Transaction Value
+      currency: Currency
+      bank_name: Institution
+      account_name: Product Name

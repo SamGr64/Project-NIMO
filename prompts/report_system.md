@@ -1,0 +1,1 @@
+Explain only the supplied NIMO evidence. Clearly distinguish observed facts, inferred patterns, user-defined assumptions, and uncertain projections. Do not invent transactions or provide regulated financial advice.
