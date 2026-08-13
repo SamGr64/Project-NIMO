@@ -1,90 +1,86 @@
-<mxfile host="65bd71144e">
-    <diagram id="generator_analysis_loop" name="Project NIMO — Generator and Reverse-Engineering Loop">
-        <mxGraphModel dx="1086" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="400" math="0" shadow="0">
-            <root>
-                <mxCell id="0"/>
-                <mxCell id="1" parent="0"/>
-                <mxCell id="title" value="&lt;b&gt;Generator &amp;amp; Reverse-Engineering Loop&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="20" width="280" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="2" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="minimal" target="profile">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="minimal" value="&lt;b&gt;Minimal public inputs&lt;/b&gt;&lt;br&gt;seed • start date • end date&lt;br&gt;optional broad prior" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;fontColor=#333333;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="80" width="170" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="3" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="profile" target="process">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="profile" value="Hidden continuous profile&lt;br&gt;income stability, savings, volatility, weekend bias…" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
-                    <mxGeometry x="240" y="80" width="160" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="4" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="process" target="reality">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="process" value="Financial processes&lt;br&gt;periodic + distributional + spontaneous properties" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
-                    <mxGeometry x="450" y="80" width="150" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="5" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="reality" target="renderer">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="9" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="reality" target="truth">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="830" y="115"/>
-                            <mxPoint x="830" y="285"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="reality" value="Canonical synthetic financial reality&lt;br&gt;accounts, paired events and balances" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
-                    <mxGeometry x="650" y="80" width="150" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="6" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="renderer" target="statement">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="renderer" value="Statement renderer&lt;br&gt;aliases, date formats, amount layouts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
-                    <mxGeometry x="650" y="180" width="150" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="7" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="statement" target="normaliser">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="statement" value="Observable bank statements" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
-                    <mxGeometry x="450" y="180" width="150" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="8" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="normaliser" target="analysis">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="normaliser" value="Normalised transaction database" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
-                    <mxGeometry x="240" y="180" width="160" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="10" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="analysis" target="behaviour">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="analysis" value="Phase 5 analysis&lt;br&gt;metrics, categories, transfers, cash flow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="180" width="170" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="12" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="behaviour" target="forecast">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="behaviour" value="Phase 6 inferred behavioural map&lt;br&gt;periodicity, distributions, surprise" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="255" width="170" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="forecast" value="Phase 7+ forecast profile&lt;br&gt;user scenarios, budgets and goals" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
-                    <mxGeometry x="450" y="330" width="150" height="50" as="geometry"/>
-                </mxCell>
-                <mxCell id="truth" value="Private ground truth&lt;br&gt;validation only" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
-                    <mxGeometry x="650" y="260" width="150" height="50" as="geometry"/>
-                </mxCell>
-                <mxCell id="compare" value="Recovery benchmark&lt;br&gt;true process vs inferred map" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
-                    <mxGeometry x="450" y="260" width="150" height="50" as="geometry"/>
-                </mxCell>
-                <mxCell id="e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;dashed=1;fontSize=12;curved=0;" parent="1" source="truth" target="compare" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;dashed=1;fontSize=12;curved=0;" parent="1" source="behaviour" target="compare" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-            </root>
-        </mxGraphModel>
-    </diagram>
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-08-10T20:50:54.081374+00:00" agent="Project NIMO architecture generator" version="24.7.17" type="device">
+  <diagram id="generator_analysis_loop" name="Project NIMO — Generator and Reverse-Engineering Loop">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="&lt;b&gt;Project NIMO — Generator and Reverse-Engineering Loop&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1520" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="minimal" value="&lt;b&gt;Minimal public inputs&lt;/b&gt;&lt;br&gt;seed • start date • end date&lt;br&gt;optional broad prior" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="120" width="260" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="profile" value="Hidden continuous profile&lt;br&gt;income stability, savings, volatility, weekend bias…" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="400" y="110" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="process" value="Financial processes&lt;br&gt;periodic + distributional + spontaneous properties" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="790" y="110" width="320" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="reality" value="Canonical synthetic financial reality&lt;br&gt;accounts, paired events and balances" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="110" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="renderer" value="Statement renderer&lt;br&gt;aliases, date formats, amount layouts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="330" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="statement" value="Observable bank statements" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="790" y="330" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="normaliser" value="Normalised transaction database" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="400" y="330" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="analysis" value="Analysis + inference&lt;br&gt;metrics, categories, transfers, behaviour map" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="330" width="270" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="behaviour" value="Phase 6 inferred behavioural map&lt;br&gt;periodicity, distributions, surprise" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDEDED;strokeColor=#666666;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="560" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="forecast" value="Phase 7+ forecast profile&lt;br&gt;user scenarios, budgets and goals" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDEDED;strokeColor=#666666;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="470" y="560" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="truth" value="Private ground truth&lt;br&gt;validation only" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDEDED;strokeColor=#666666;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="560" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="compare" value="Recovery benchmark&lt;br&gt;true process vs inferred map" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDEDED;strokeColor=#666666;fontSize=13;fontFamily=Helvetica;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="790" y="560" width="260" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="minimal" target="profile">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="profile" target="process">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="process" target="reality">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="reality" target="renderer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="renderer" target="statement">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="statement" target="normaliser">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="normaliser" target="analysis">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;dashed=1;" edge="1" parent="1" source="analysis" target="behaviour">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;dashed=1;" edge="1" parent="1" source="behaviour" target="forecast">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;dashed=1;" edge="1" parent="1" source="reality" target="truth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;dashed=1;" edge="1" parent="1" source="truth" target="compare">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;dashed=1;" edge="1" parent="1" source="behaviour" target="compare">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
 </mxfile>

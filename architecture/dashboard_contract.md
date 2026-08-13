@@ -1,67 +1,59 @@
 # Dashboard contract
 
-## Folder boundary
+## Pages
 
 ```text
-dashboard/pages/    page composition and user interactions
-dashboard/lib/      reusable charts, widgets, themes, filters and layout controls
-src/nimo/           all financial calculations, persistence and generation
+Start
+  Data & Setup
+
+My Finances
+  Overview
+  Accounts
+  Transactions
+  Categories
+  Cash Flow
+
+Plan
+  Forecasting & Scenarios
+  Budgeting & Goals
+  Investing
+
+Insights
+  Behaviours & Configuration
+  Reporting & Advice
 ```
 
-A page may not open the SQLite database or reproduce core calculations.
+## Page rule
 
-## Navigation
+A page may:
 
-Implemented pages:
+- read global context and session state;
+- collect user input;
+- call application services;
+- render shared components/charts;
+- save layout preferences.
 
-- Data & Setup;
-- Overview;
-- Accounts;
-- Transactions;
-- Categories;
-- Cash Flow, including manual transfer confirmation/rejection.
+A page may not implement financial calculations, query SQL directly or read synthetic ground truth.
 
-Scaffolded pages:
+## Shared library
 
-- Forecasting & Scenarios;
-- Budgeting & Goals;
-- Investing;
-- User Behaviours & Configuration;
-- Reporting & Advice.
+`dashboard/lib/` contains bootstrap/context, service facade, themes, filters, forms, charts, components, widget registry and layout persistence. `dashboard/pages/` only composes these features.
 
-## Widget contract
+## Layout autonomy
 
-Each reusable widget should ultimately declare:
+Every implemented page has a default layout in `config/dashboard/default_layouts.yaml`. The layout service persists:
 
-- stable widget id;
-- title;
-- supported pages;
-- required service data;
-- supported sizes/options;
-- render callable.
+- selected headline metrics;
+- selected widgets;
+- widget ordering;
+- page-specific configuration where supported.
 
-Page layouts store widget ids and headline metric ids, never financial values.
-
-## Layout customisation
-
-The Phase 5 Overview supports:
-
-- selecting headline metrics;
-- selecting visible widgets;
-- defining widget order;
-- saving/restoring defaults.
-
-The `LayoutService` and registry are reusable for all other pages.
+A reset operation restores the project default. Layout changes never invalidate analysis.
 
 ## Themes
 
-`config/themes/light.yaml` and `dark.yaml` are authoritative design-token sources. They control:
+`config/themes/light.yaml` and `dark.yaml` define design tokens. The dashboard applies tokens to CSS and Plotly templates. User theme selection is stored in session/profile preferences; project designers retain control of the token files.
 
-- application surfaces;
-- primary and secondary text;
-- brand colours;
-- status colours;
-- chart categorical palette;
-- borders.
+## Error boundary
 
-Streamlit’s static config is limited to server/browser settings.
+Service exceptions are displayed as actionable errors without exposing statement content or secrets. Missing optional dependencies produce install guidance rather than import failures during core CLI use.

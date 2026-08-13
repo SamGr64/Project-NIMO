@@ -1,6 +1,28 @@
-schema_version: 1
-default_sections: [financial_position, cash_flow, spending, categories]
+schema_version: 2
+default_sections:
+  - executive_summary
+  - financial_position
+  - cash_flow
+  - spending_behaviour
+  - forecast_interpretation
+  - budgets_and_goals
+  - investing
+  - risks
+  - opportunities
+  - possible_actions
+  - caveats
 llm:
   enabled_by_default: false
+  provider: openai
+  model: gpt-5-mini
   send_raw_descriptions: false
-status: planned_phase_9
+  maximum_category_rows: 20
+rendering:
+  default_format: html
+  include_charts: true
+  include_tables: true
+
+simulation:
+  forecast_runs: 1000
+  budget_runs: 1000
+  goal_runs: 1000

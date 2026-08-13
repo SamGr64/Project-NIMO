@@ -1,3 +1,4 @@
-"""Phase 8 namespace: budgets, goals, allocations and intervention simulations."""
+from nimo.planning.budgets import ESSENTIAL_CATEGORIES, infer_budget_lines
+from nimo.planning.goals import months_until, simulate_goal
 
-PHASE_STATUS = "scaffolded"
+__all__ = ["ESSENTIAL_CATEGORIES", "infer_budget_lines", "months_until", "simulate_goal"]

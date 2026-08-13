@@ -1,6 +1,17 @@
-schema_version: 1
+schema_version: 2
 monte_carlo:
-  default_runs: 5000
+  default_runs: 3000
+  maximum_runs: 50000
   default_horizon_months: 12
+  maximum_horizon_months: 120
+  seed_namespace: forecasting
 intervals: [0.50, 0.90]
-status: planned_phase_7
+defaults:
+  annual_inflation_rate: 0.025
+  monthly_trend_cap: 0.03
+  minimum_history_months: 3
+  category_floor: 0.0
+backtesting:
+  minimum_training_months: 6
+  default_holdout_months: 3
+  runs: 1000

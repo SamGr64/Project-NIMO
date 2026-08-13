@@ -22,18 +22,19 @@
     }
   ],
   "archetype": "variable_income",
-  "created_at": "2026-08-10T20:58:28.136795+00:00",
+  "created_at": "2026-08-10T22:52:45.523508+00:00",
   "end_date": "2026-07-31",
   "generator_version": "2.0.0",
-  "ground_truth_path": "synthetic/run_20260810T205827576372Z_42/ground_truth.json",
+  "ground_truth_path": "synthetic/run_20260810T225245033949Z_42/ground_truth.json",
   "imported_rows": 1606,
+  "questionnaire": {},
   "schema_version": 1,
   "seed": 42,
   "start_date": "2024-01-01",
   "statement_format": "seeded_random",
   "statement_paths": [
-    "synthetic/run_20260810T205827576372Z_42/statements/main_current_account_2024-01-01_2026-07-31_canonical.csv",
-    "synthetic/run_20260810T205827576372Z_42/statements/easy_access_savings_2024-01-31_2026-07-31_canonical.csv"
+    "synthetic/run_20260810T225245033949Z_42/statements/main_current_account_2024-01-01_2026-07-31_canonical.csv",
+    "synthetic/run_20260810T225245033949Z_42/statements/easy_access_savings_2024-01-31_2026-07-31_canonical.csv"
   ],
   "user": "sample_user",
   "warnings": []

@@ -1,53 +1,55 @@
 # System context
 
-## Boundaries
+## Purpose
 
-NIMO is a local application with these principal boundaries:
-
-```text
-Users
-  ├── CLI
-  └── Streamlit dashboard
-          │
-          ▼
-Application service layer
-  ├── user workspaces
-  ├── generation/import
-  ├── analysis
-  ├── categorisation
-  └── layout persistence
-          │
-          ▼
-Domain and data modules
-          │
-          ▼
-One database per user
-```
-
-External LLM, market-data and report-rendering providers are future optional adapters. They must sit behind interfaces and may not become dependencies of the domain layer.
-
-## Main packages
-
-- `src/nimo/config` loads versioned YAML configuration.
-- `src/nimo/users` manages workspace folders and profile metadata.
-- `src/nimo/storage` owns the database schema and repositories.
-- `src/nimo/ingestion` inspects, maps and normalises statement rows.
-- `src/nimo/generation` creates latent profiles, transactions and rendered statements.
-- `src/nimo/categorisation` manages taxonomies, rules and manual assignments.
-- `src/nimo/analysis` computes descriptive, category, transfer and cash-flow results.
-- `src/nimo/application` composes those modules into interface-safe services.
-- `src/nimo/cli` and `dashboard/` are presentation layers.
-
-## Configuration resolution
+Project NIMO is a local-first personal-finance modelling application. It supports two data entry paths:
 
 ```text
-project defaults
-      ↓
-user profile preferences
-      ↓
-page/scenario-specific settings
-      ↓
-immediate CLI or dashboard input
+seeded synthetic statements ──┐
+                              ├──► normalised per-user transaction database
+real user CSV statements ─────┘
 ```
 
-More specific values override broader defaults. The Phase 5 build implements project defaults, user profile preferences and dashboard layout overrides.
+The normalised database supports descriptive analysis, categorisation, cash-flow reconciliation, behaviour inference, forecasting, budgeting, savings goals, reporting and an educational investing sandbox.
+
+## Interfaces
+
+- **CLI:** complete bare-bones access to all application services.
+- **Streamlit dashboard:** interactive page and widget composition.
+- **Scripts:** benchmarks, calibration, sample rebuilding and migrations.
+
+All interfaces call the same `ApplicationContainer` services. No interface owns business calculations.
+
+## Core subsystems
+
+```text
+Generation / ingestion
+        ↓
+Normalised storage and provenance
+        ↓
+Descriptive analysis + categorisation + transfers
+        ↓
+Behavioural map
+        ↓
+Forecast profile + user scenarios
+        ↓
+Budgets, goals and investing simulations
+        ↓
+Structured report evidence
+        ↓
+Offline or optional OpenAI narrative
+```
+
+## External boundaries
+
+- **OpenAI:** optional report narrative provider; disabled by default.
+- **Market data:** provider interface; version 1.0 ships a synthetic local dataset.
+- **File formats:** CSV import, CSV/JSON export, HTML/Markdown/PDF/DOCX reports, ZIP/encrypted backup archives.
+
+## Trust boundaries
+
+1. Real statements and user databases are sensitive local data.
+2. Synthetic hidden truth is private to generation/benchmarking and is never consumed by analysis.
+3. LLM prose cannot modify calculations; it receives a frozen structured evidence package.
+4. Investment simulations are educational and cannot place trades.
+5. Dashboard/CLI inputs are validated at service boundaries before persistence.

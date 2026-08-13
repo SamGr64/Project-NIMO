@@ -151,7 +151,7 @@ class AnalysisRun(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     analysis_type: Mapped[str] = mapped_column(String(64), nullable=False)
     source_data_version: Mapped[str] = mapped_column(String(80), nullable=False)
-    model_version: Mapped[str] = mapped_column(String(40), default="0.5.0", nullable=False)
+    model_version: Mapped[str] = mapped_column(String(40), default="1.0.0", nullable=False)
     config_hash: Mapped[str] = mapped_column(String(64), nullable=False)
     status: Mapped[str] = mapped_column(String(24), default="complete", nullable=False)
     summary_json: Mapped[str] = mapped_column(Text, default="{}", nullable=False)
@@ -167,3 +167,215 @@ class DashboardLayout(Base):
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=utc_now, onupdate=utc_now, nullable=False
     )
+
+
+class SchemaMigration(Base):
+    __tablename__ = "schema_migrations"
+
+    version: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String(200), nullable=False)
+    applied_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
+
+
+class AuditEvent(Base):
+    __tablename__ = "audit_events"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    event_type: Mapped[str] = mapped_column(String(100), nullable=False, index=True)
+    actor: Mapped[str] = mapped_column(String(80), default="local_user", nullable=False)
+    object_type: Mapped[str | None] = mapped_column(String(80))
+    object_id: Mapped[str | None] = mapped_column(String(120))
+    details_json: Mapped[str] = mapped_column(Text, default="{}", nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
+
+
+class BehaviourRun(Base):
+    __tablename__ = "behaviour_runs"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    source_data_version: Mapped[str] = mapped_column(String(80), nullable=False, index=True)
+    model_version: Mapped[str] = mapped_column(String(40), default="1.0.0", nullable=False)
+    config_hash: Mapped[str] = mapped_column(String(64), nullable=False)
+    status: Mapped[str] = mapped_column(String(24), default="complete", nullable=False)
+    diagnostics_json: Mapped[str] = mapped_column(Text, default="{}", nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
+
+
+class BehaviourPattern(Base):
+    __tablename__ = "behaviour_patterns"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    run_id: Mapped[int] = mapped_column(ForeignKey("behaviour_runs.id"), nullable=False, index=True)
+    scope_type: Mapped[str] = mapped_column(String(32), nullable=False, index=True)
+    scope_key: Mapped[str] = mapped_column(String(240), nullable=False, index=True)
+    account_id: Mapped[int | None] = mapped_column(ForeignKey("accounts.id"), nullable=True)
+    category_id: Mapped[int | None] = mapped_column(ForeignKey("categories.id"), nullable=True)
+    sample_count: Mapped[int] = mapped_column(Integer, nullable=False)
+    periodic_score: Mapped[float] = mapped_column(Float, default=0.0, nullable=False)
+    spontaneous_score: Mapped[float] = mapped_column(Float, default=0.0, nullable=False)
+    distributional_score: Mapped[float] = mapped_column(Float, default=0.0, nullable=False)
+    pattern_json: Mapped[str] = mapped_column(Text, default="{}", nullable=False)
+
+
+class BehaviouralMapRecord(Base):
+    __tablename__ = "behavioural_maps"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    run_id: Mapped[int] = mapped_column(ForeignKey("behaviour_runs.id"), nullable=False, index=True)
+    source_data_version: Mapped[str] = mapped_column(String(80), nullable=False, index=True)
+    map_json: Mapped[str] = mapped_column(Text, nullable=False)
+    archetype_label: Mapped[str] = mapped_column(String(240), nullable=False)
+    archetype_confidence: Mapped[float] = mapped_column(Float, nullable=False)
+    is_current: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False, index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
+
+
+class TransactionOutlier(Base):
+    __tablename__ = "transaction_outliers"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    run_id: Mapped[int] = mapped_column(ForeignKey("behaviour_runs.id"), nullable=False, index=True)
+    transaction_id: Mapped[int] = mapped_column(ForeignKey("transactions.id"), nullable=False, index=True)
+    scope_key: Mapped[str] = mapped_column(String(240), nullable=False)
+    robust_z: Mapped[float] = mapped_column(Float, nullable=False)
+    surprise_score: Mapped[float] = mapped_column(Float, nullable=False)
+    is_outlier: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    evidence_json: Mapped[str] = mapped_column(Text, default="{}", nullable=False)
+
+
+class ForecastProfileRecord(Base):
+    __tablename__ = "forecast_profiles"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String(160), default="Default", nullable=False)
+    source_behaviour_map_id: Mapped[int | None] = mapped_column(ForeignKey("behavioural_maps.id"))
+    source_data_version: Mapped[str] = mapped_column(String(80), nullable=False, index=True)
+    profile_json: Mapped[str] = mapped_column(Text, nullable=False)
+    is_current: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False, index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=utc_now, onupdate=utc_now, nullable=False
+    )
+
+
+class ForecastScenarioRecord(Base):
+    __tablename__ = "forecast_scenarios"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String(160), unique=True, nullable=False)
+    description: Mapped[str] = mapped_column(Text, default="", nullable=False)
+    profile_id: Mapped[int] = mapped_column(ForeignKey("forecast_profiles.id"), nullable=False)
+    overrides_json: Mapped[str] = mapped_column(Text, default="{}", nullable=False)
+    events_json: Mapped[str] = mapped_column(Text, default="[]", nullable=False)
+    is_baseline: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=utc_now, onupdate=utc_now, nullable=False
+    )
+
+
+class ForecastRunRecord(Base):
+    __tablename__ = "forecast_runs"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    scenario_id: Mapped[int] = mapped_column(ForeignKey("forecast_scenarios.id"), nullable=False, index=True)
+    seed: Mapped[int] = mapped_column(Integer, nullable=False)
+    horizon_months: Mapped[int] = mapped_column(Integer, nullable=False)
+    simulation_runs: Mapped[int] = mapped_column(Integer, nullable=False)
+    as_of_date: Mapped[date] = mapped_column(Date, nullable=False)
+    source_data_version: Mapped[str] = mapped_column(String(80), nullable=False)
+    assumptions_json: Mapped[str] = mapped_column(Text, nullable=False)
+    summary_json: Mapped[str] = mapped_column(Text, nullable=False)
+    paths_file: Mapped[str | None] = mapped_column(String(1024))
+    calibration_json: Mapped[str] = mapped_column(Text, default="{}", nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
+
+
+class BudgetRecord(Base):
+    __tablename__ = "budgets"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String(160), unique=True, nullable=False)
+    mode: Mapped[str] = mapped_column(String(32), default="category", nullable=False)
+    period: Mapped[str] = mapped_column(String(32), default="monthly", nullable=False)
+    is_default: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    settings_json: Mapped[str] = mapped_column(Text, default="{}", nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=utc_now, onupdate=utc_now, nullable=False
+    )
+
+
+class BudgetLineRecord(Base):
+    __tablename__ = "budget_lines"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    budget_id: Mapped[int] = mapped_column(ForeignKey("budgets.id"), nullable=False, index=True)
+    category_slug: Mapped[str] = mapped_column(String(120), nullable=False)
+    label: Mapped[str] = mapped_column(String(200), nullable=False)
+    amount: Mapped[float] = mapped_column(Float, nullable=False)
+    source: Mapped[str] = mapped_column(String(32), default="inferred", nullable=False)
+    is_essential: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    settings_json: Mapped[str] = mapped_column(Text, default="{}", nullable=False)
+
+
+class GoalRecord(Base):
+    __tablename__ = "goals"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String(200), nullable=False)
+    target_amount: Mapped[float] = mapped_column(Float, nullable=False)
+    current_amount: Mapped[float] = mapped_column(Float, default=0.0, nullable=False)
+    target_date: Mapped[date] = mapped_column(Date, nullable=False)
+    priority: Mapped[int] = mapped_column(Integer, default=3, nullable=False)
+    monthly_contribution: Mapped[float] = mapped_column(Float, default=0.0, nullable=False)
+    surplus_allocation_fraction: Mapped[float] = mapped_column(Float, default=0.0, nullable=False)
+    settings_json: Mapped[str] = mapped_column(Text, default="{}", nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
+
+
+class PortfolioRecord(Base):
+    __tablename__ = "portfolios"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String(160), unique=True, nullable=False)
+    description: Mapped[str] = mapped_column(Text, default="", nullable=False)
+    allocations_json: Mapped[str] = mapped_column(Text, nullable=False)
+    contribution_rule_json: Mapped[str] = mapped_column(Text, nullable=False)
+    assumptions_json: Mapped[str] = mapped_column(Text, default="{}", nullable=False)
+    is_default: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=utc_now, onupdate=utc_now, nullable=False
+    )
+
+
+class InvestmentRunRecord(Base):
+    __tablename__ = "investment_runs"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    portfolio_id: Mapped[int] = mapped_column(ForeignKey("portfolios.id"), nullable=False, index=True)
+    forecast_run_id: Mapped[int | None] = mapped_column(ForeignKey("forecast_runs.id"))
+    seed: Mapped[int] = mapped_column(Integer, nullable=False)
+    horizon_months: Mapped[int] = mapped_column(Integer, nullable=False)
+    simulation_runs: Mapped[int] = mapped_column(Integer, nullable=False)
+    stress_name: Mapped[str | None] = mapped_column(String(120))
+    summary_json: Mapped[str] = mapped_column(Text, nullable=False)
+    paths_file: Mapped[str | None] = mapped_column(String(1024))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
+
+
+class ReportRunRecord(Base):
+    __tablename__ = "report_runs"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    period_start: Mapped[date | None] = mapped_column(Date)
+    period_end: Mapped[date | None] = mapped_column(Date)
+    provider: Mapped[str] = mapped_column(String(40), default="offline", nullable=False)
+    model: Mapped[str | None] = mapped_column(String(120))
+    evidence_json: Mapped[str] = mapped_column(Text, nullable=False)
+    narrative_json: Mapped[str] = mapped_column(Text, nullable=False)
+    output_paths_json: Mapped[str] = mapped_column(Text, nullable=False)
+    source_data_version: Mapped[str] = mapped_column(String(80), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)

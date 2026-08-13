@@ -29,7 +29,7 @@ The latent profile includes continuous traits such as:
 - subscription tendency;
 - price sensitivity.
 
-The generator creates a particular person by sampling within broad prior ranges using the seed.
+The generator creates a particular person by sampling within broad prior ranges using the seed. In ordinary random mode the seed selects a broad archetype prior. In questionnaire mode, answers constrain the population-wide continuous ranges first and the nearest descriptive archetype is assigned only after sampling. An explicitly selected archetype may also be refined by questionnaire answers.
 
 ## Seed isolation
 

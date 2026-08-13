@@ -1,13 +1,21 @@
 from __future__ import annotations
 
+from copy import deepcopy
 from pathlib import Path
+from typing import Any
 
 from nimo.analysis.transfers import TransferDetector
 from nimo.application.services import (
     AnalysisService,
+    BackupService,
+    BehaviourService,
+    ForecastService,
+    InvestmentService,
     GenerationService,
     IngestionService,
     LayoutService,
+    PlanningService,
+    ReportService,
     UserService,
 )
 from nimo.categorisation.service import CategorisationService
@@ -30,6 +38,12 @@ class ApplicationContainer:
         self.config = config
         self.workspace = workspace
         self.database = database
+        profile_overrides = workspace.read_profile().get("model_overrides", {})
+        analysis_config = _deep_merge(config.mapping("analysis"), profile_overrides.get("analysis", {}))
+        forecasting_config = _deep_merge(config.mapping("forecasting"), profile_overrides.get("forecasting", {}))
+        budgeting_config = _deep_merge(config.mapping("budgeting"), profile_overrides.get("budgeting", {}))
+        investing_config = _deep_merge(config.mapping("investing"), profile_overrides.get("investing", {}))
+        reporting_config = _deep_merge(config.mapping("reporting"), profile_overrides.get("reporting", {}))
 
         self.categorisation = CategorisationService(
             database=database,
@@ -39,7 +53,7 @@ class ApplicationContainer:
         )
         self.transfer_detector = TransferDetector(
             database=database,
-            analysis_config=config.mapping("analysis"),
+            analysis_config=analysis_config,
         )
         pipeline = StatementIngestionPipeline(
             database=database,
@@ -63,14 +77,47 @@ class ApplicationContainer:
         )
         self.analysis = AnalysisService(
             database=database,
-            analysis_config=config.mapping("analysis"),
+            analysis_config=analysis_config,
             categorisation=self.categorisation,
             transfer_detector=self.transfer_detector,
+        )
+        self.behaviours = BehaviourService(
+            database=database,
+            analysis_config=analysis_config,
+        )
+        self.forecasting = ForecastService(
+            database=database,
+            workspace=workspace,
+            config=forecasting_config,
+            behaviours=self.behaviours,
+        )
+        self.planning = PlanningService(
+            database=database,
+            config=budgeting_config,
+            forecasting=self.forecasting,
+        )
+        self.investing = InvestmentService(
+            database=database,
+            workspace=workspace,
+            config=investing_config,
+            forecasting=self.forecasting,
+        )
+        self.reporting = ReportService(
+            database=database,
+            workspace=workspace,
+            config=reporting_config,
+            prompts_root=config.paths.prompts_root,
+            analysis=self.analysis,
+            behaviours=self.behaviours,
+            forecasting=self.forecasting,
+            planning=self.planning,
+            investing=self.investing,
         )
         self.layouts = LayoutService(
             database=database,
             default_layouts=config.mapping("dashboard/default_layouts"),
         )
+        self.backups = BackupService(database=database, workspace=workspace)
 
     @classmethod
     def for_user(
@@ -106,3 +153,13 @@ class ApplicationContainer:
         container = cls(config=config, workspace=workspace, database=database)
         container.categorisation.ensure_taxonomy()
         return container
+
+
+def _deep_merge(base: dict[str, Any], updates: dict[str, Any]) -> dict[str, Any]:
+    merged = deepcopy(base)
+    for key, value in updates.items():
+        if isinstance(value, dict) and isinstance(merged.get(key), dict):
+            merged[key] = _deep_merge(merged[key], value)
+        else:
+            merged[key] = deepcopy(value)
+    return merged

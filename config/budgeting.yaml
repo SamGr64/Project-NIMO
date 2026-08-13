@@ -1,5 +1,9 @@
-schema_version: 1
+schema_version: 2
 defaults:
   lookback_months: 6
   irregular_expense_reserve_fraction: 0.05
-status: planned_phase_8
+  category_quantile: 0.60
+  round_to: 5
+  goal_simulation_runs: 3000
+  goal_surplus_allocation_fraction: 0.75
+modes: [category, total_spend, savings_first, annual_pots]

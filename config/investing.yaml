@@ -1,6 +1,25 @@
-schema_version: 1
+schema_version: 2
 defaults:
   provider: local
   inflation_rate: 0.025
   annual_fee_rate: 0.0025
-status: planned_phase_10
+  simulation_runs: 3000
+  horizon_years: 10
+  contribution_rule: fixed
+  monthly_contribution: 100
+  rebalance_frequency_months: 12
+  cash_buffer_months: 3
+simulation:
+  return_method: historical_bootstrap
+  maximum_runs: 50000
+  maximum_horizon_years: 50
+stress_presets:
+  market_drop:
+    label: Market falls 30%
+    first_month_return_shock: -0.30
+  income_drop:
+    label: Income falls 20%
+    income_multiplier: 0.80
+  unexpected_expense:
+    label: Unexpected £3,000 expense
+    one_off_cashflow: -3000

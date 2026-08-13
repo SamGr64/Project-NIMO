@@ -1,4 +1,4 @@
-schema_version: 1
+schema_version: 2
 periods:
   default_months: 12
   incomplete_month_policy: compare_same_day
@@ -10,3 +10,15 @@ categorisation:
   minimum_builtin_confidence: 0.75
 metrics:
   recent_weight_decay: 0.85
+behaviour:
+  minimum_observations: 6
+  minimum_distribution_observations: 12
+  candidate_distributions: [normal, lognormal, gamma, exponential, bimodal_normal]
+  periodicity:
+    monthly_day_tolerance: 3
+    minimum_month_coverage: 0.55
+    weekly_bias_threshold: 0.24
+  outliers:
+    iqr_multiplier: 1.5
+    robust_z_threshold: 3.5
+  merchant_minimum_observations: 5

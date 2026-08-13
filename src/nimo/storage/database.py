@@ -7,6 +7,7 @@ from typing import Iterator
 from sqlalchemy import Engine, create_engine, event, select
 from sqlalchemy.orm import Session, sessionmaker
 
+from nimo.storage.migrations import run_migrations
 from nimo.storage.models import Base, UserRecord
 
 
@@ -32,6 +33,7 @@ class Database:
     ) -> None:
         Base.metadata.create_all(self.engine)
         with self.session() as session:
+            run_migrations(self.engine, session)
             existing = session.scalar(select(UserRecord).where(UserRecord.slug == user_slug))
             if existing is None:
                 session.add(

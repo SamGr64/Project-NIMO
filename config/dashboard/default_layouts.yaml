@@ -1,4 +1,4 @@
-schema_version: 1
+schema_version: 2
 pages:
   overview:
     headline_metrics: [total_balance, current_month_spend, net_cash_flow, savings_rate]
@@ -12,3 +12,18 @@ pages:
   cash_flow:
     headline_metrics: [income, external_spend, net_cash_flow, internal_transfers]
     widgets: [cashflow_sankey, flow_table]
+  behaviours:
+    headline_metrics: [archetype_confidence, history_months, spontaneous_rate, weekend_share]
+    widgets: [behaviour_table, distribution_view, outlier_table, model_configuration]
+  forecasting:
+    headline_metrics: [median_final_balance, p10_final_balance, p90_final_balance, negative_balance_probability]
+    widgets: [forecast_fan, assumption_table, scenario_controls, event_table, backtest]
+  budgeting_goals:
+    headline_metrics: [total_budget, forecast_spend, active_goals, selected_goal_probability]
+    widgets: [budget_table, budget_probability, goal_cards, intervention]
+  investing:
+    headline_metrics: [monthly_contribution, median_final_value, total_contributed, negative_cash_probability]
+    widgets: [capacity, portfolio_editor, investment_fan, asset_statistics, stress_tests]
+  reporting:
+    headline_metrics: [report_count, last_provider]
+    widgets: [report_builder, report_history, narrative_preview]

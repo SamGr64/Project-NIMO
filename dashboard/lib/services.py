@@ -28,3 +28,27 @@ class DashboardServices:
     @property
     def layouts(self):
         return self.container.layouts
+
+    @property
+    def behaviours(self):
+        return self.container.behaviours
+
+    @property
+    def forecasting(self):
+        return self.container.forecasting
+
+    @property
+    def planning(self):
+        return self.container.planning
+
+    @property
+    def investing(self):
+        return self.container.investing
+
+    @property
+    def reporting(self):
+        return self.container.reporting
+
+    @property
+    def backups(self):
+        return self.container.backups

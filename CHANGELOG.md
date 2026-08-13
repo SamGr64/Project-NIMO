@@ -1,16 +1,51 @@
 # Changelog
 
-Changes to Project NIMO and its codebase are recorded in this version-control file.
-- Patches (_._.X)  : Minor bug fixes and syntax edits
-- Minor (_.X._)    : Incremental features and isolated functionality/ procedural adjustments that are backwards-compatible
-- Major (X._._)    : Significant breaking features or codebase updates that are not backwards-compatible 
+## 1.0.0 — Complete baseline through Phase 11
 
-## [Unreleased]
+### Behaviour inference
 
-- Forecasting
-- Simplified UX
+- Added account, category and merchant behaviour maps.
+- Added weekly/monthly/yearly periodicity scoring and amount-stability measures.
+- Added normal, lognormal, gamma, exponential and bimodal-normal candidate fits.
+- Added robust outlier and contextual surprise scores.
+- Added descriptive archetype summaries and synthetic recovery benchmarking.
 
-## [0.5.0] — Phase 0–5 foundation
+### Forecasting and planning
+
+- Added automatically inferred forecast profiles with assumption provenance.
+- Added editable scenarios, dotted-path overrides and probabilistic future events.
+- Added deterministic Monte Carlo balance, income, spend and category paths.
+- Added threshold probabilities, scenario comparison and rolling backtests.
+- Added inferred/custom budgets, per-line budget probabilities and savings goals.
+- Added goal completion ranges and category-reduction intervention simulations.
+
+### Reporting and investing
+
+- Added frozen structured report evidence and validated narrative schemas.
+- Added offline synthesis plus an optional OpenAI structured-output provider.
+- Added HTML, Markdown, PDF and DOCX report renderers.
+- Added a synthetic educational market dataset, asset statistics, portfolio simulation, contribution rules and stress tests.
+- Added sequential threshold/goal-aware investing rules to avoid reallocating the same cash repeatedly.
+
+### Dashboard and CLI
+
+- Completed Forecasting, Budgeting & Goals, Investing, Behaviours & Configuration, and Reporting & Advice pages.
+- Extended persisted page layout selection to the new pages.
+- Added complete CLI commands for behaviour, forecasts, budgets, goals, investing, reports, export, backup and diagnostics.
+- Added PowerShell-friendly repeated `--allocation SYMBOL=WEIGHT` portfolio creation.
+- Exposed financial-twin questionnaire generation in both the dashboard and CLI, including repeatable `--answer QUESTION=ANSWER` values and JSON/YAML files.
+
+### Hardening
+
+- Added schema migrations 1–11 and audit events.
+- Added portable workspace-relative output/cache paths.
+- Added consistent ZIP backups, optional encrypted `.nimoenc` backups and safe restore.
+- Added database/source/cache health diagnostics.
+- Added cross-platform GitHub Actions, build/release workflows and pre-commit hooks.
+- Expanded unit, integration, statistical and complete-workflow tests.
+- Added calibration, behaviour-recovery and performance benchmark scripts.
+
+## 0.5.0 — Phase 0–5 foundation
 
 - Replaced the restrictive single-policy generator with a seeded latent-profile simulator.
 - Added stable child seeds for independent generator components.
@@ -26,15 +61,3 @@ Changes to Project NIMO and its codebase are recorded in this version-control fi
 - Added light/dark design-token configuration and persisted dashboard layouts.
 - Added architecture documentation, roadmap and editable Draw.io schematics.
 - Added unit, integration and statistical tests.
-
-## [0.1.2] 09-08-2026
-
-- Changed statement generator to have periodic, spontaneous, and distributional behaviours across weekly, monthly and yearly timescales.
-
-## [0.1.1] 07-08-2026
-
-- Minor bug fixes and description field adjustments to the statement generator.
-
-## [0.1.0] 06-08-2026
-
-- First committed version of simple generator, uses seeded random generation to produce artificial statements for secure feature production and testing.

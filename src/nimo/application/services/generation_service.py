@@ -107,6 +107,7 @@ class GenerationService:
             "start_date": request.start_date.isoformat(),
             "end_date": request.end_date.isoformat(),
             "statement_format": request.statement_format,
+            "questionnaire": request.questionnaire or {},
             "accounts": [account.as_dict() for account in accounts],
             "statement_paths": [str(path.relative_to(self.workspace.root)) for path in statement_paths],
             "ground_truth_path": str(ground_truth_path.relative_to(self.workspace.root)),
@@ -121,6 +122,7 @@ class GenerationService:
                 "generation": {
                     "latest_seed": request.seed,
                     "latest_archetype": profile.archetype,
+                    "latest_questionnaire": request.questionnaire or {},
                     "latest_manifest": str(manifest_path.relative_to(self.workspace.root)),
                 },
             }

@@ -32,6 +32,30 @@ class UserWorkspace:
     def database_path(self) -> Path:
         return self.database_dir / "nimo.sqlite3"
 
+    def path_for_storage(self, path: Path) -> str:
+        """Return a portable workspace-relative path whenever possible.
+
+        Older NIMO builds sometimes persisted absolute cache/report paths in the
+        SQLite database.  Relative paths make backups and copied workspaces
+        relocatable across Windows, macOS and Linux machines.
+        """
+
+        candidate = Path(path)
+        try:
+            return candidate.resolve().relative_to(self.root.resolve()).as_posix()
+        except ValueError:
+            return str(candidate)
+
+    def resolve_stored_path(self, value: str | Path) -> Path:
+        """Resolve a path stored by :meth:`path_for_storage`.
+
+        Absolute legacy paths remain supported.  Relative values are always
+        interpreted from the user workspace root, never from the process CWD.
+        """
+
+        candidate = Path(value)
+        return candidate if candidate.is_absolute() else self.root / candidate
+
     def read_profile(self) -> dict[str, Any]:
         if not self.profile_path.exists():
             return {}

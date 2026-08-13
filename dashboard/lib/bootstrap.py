@@ -14,20 +14,11 @@ def bootstrap_dashboard(st, project_root: Path) -> DashboardContext:
     users = UserService(config)
     available = users.list()
 
-    if "nimo_theme" not in st.session_state:
-        st.session_state.nimo_theme = "light"
     if "nimo_user" not in st.session_state:
         st.session_state.nimo_user = "sample_user" if "sample_user" in available else (available[0] if available else None)
 
     with st.sidebar:
         st.markdown("## NIMO")
-        selected_theme = st.selectbox(
-            "Appearance",
-            ["light", "dark"],
-            index=0 if st.session_state.nimo_theme == "light" else 1,
-            key="theme_selector",
-        )
-        st.session_state.nimo_theme = selected_theme
         if available:
             current = st.session_state.nimo_user if st.session_state.nimo_user in available else available[0]
             selected_user = st.selectbox(
@@ -40,6 +31,24 @@ def bootstrap_dashboard(st, project_root: Path) -> DashboardContext:
         else:
             selected_user = None
             st.info("Create or generate a user from Data & Setup.")
+
+        stored_theme = "light"
+        if selected_user is not None:
+            workspace = users.workspaces.workspace(selected_user)
+            preference = str(workspace.read_profile().get("preferences", {}).get("theme", "light")).lower()
+            if preference in {"light", "dark"}:
+                stored_theme = preference
+        selected_theme = st.selectbox(
+            "Appearance",
+            ["light", "dark"],
+            index=0 if stored_theme == "light" else 1,
+            key=f"theme_selector_{selected_user or 'no_user'}",
+        )
+        st.session_state.nimo_theme = selected_theme
+        if selected_user is not None and selected_theme != stored_theme:
+            users.workspaces.workspace(selected_user).update_profile(
+                {"preferences": {"theme": selected_theme}}
+            )
 
     container = None
     if selected_user is not None:
